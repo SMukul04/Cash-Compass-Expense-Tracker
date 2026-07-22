@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-icon {
+    font-size: 72px;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+    filter: drop-shadow(0 4px 8px rgba(32, 178, 170, 0.3));
+}
+
+.logo-title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #20b2aa;
+    margin: 0;
+    text-shadow: 3px 3px 6px rgba(32, 178, 170, 0.4);
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.signup-card {
+    background: white;
+    border: 2px solid #20b2aa;
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(32, 178, 170, 0.1);
+}
+
+.title {
+    color: #333;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: sans-serif;
+}
+
+.signup-form {
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #20b2aa;
+    box-shadow: 0 0 0 2px rgba(32, 178, 170, 0.1);
+}
+
+.input-group input::placeholder {
+    color: #999;
+}
+
+/* Name field specific styling */
+.input-group input[type="text"] {
+    text-transform: capitalize;
+}
+
+.signup-btn {
+    width: 100%;
+    padding: 16px;
+    background: #20b2aa;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.signup-btn:hover {
+    background: #1a9b94;
+}
+
+.signup-btn:active {
+    transform: translateY(1px);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link p {
+    color: #666;
+    font-size: 16px;
+}
+
+.link {
+    color: #20b2aa;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .signup-card {
+        padding: 30px 20px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+}
+
+/* Error states */
+.input-group input.error {
+    border-color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Success states */
+.input-group input.success {
+    border-color: #28a745;
+}
+
+.success-message {
+    color: #28a745;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Loading state */
+.signup-btn.loading {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.signup-btn.loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Password strength indicator */
+.password-strength {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.strength-weak {
+    color: #dc3545;
+}
+
+.strength-medium {
+    color: #ffc107;
+}
+
+.strength-strong {
+    color: #28a745;
+}
+
+/* Form validation feedback */
+.form-feedback {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-feedback.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-feedback.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

@@ -1,0 +1,82 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f7f7fb; color: #222; }
+.app { display: flex; min-height: 100vh; }
+.sidebar { width: 240px; background: #fff; border-right: 1px solid #eee; padding: 24px 16px; }
+.profile { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 24px; }
+.avatar { width: 64px; height: 64px; border-radius: 16px; background: #e9efff; display: grid; place-items: center; font-size: 28px; }
+.user-name { font-weight: 600; }
+.menu { display: grid; gap: 8px; }
+.menu-item { padding: 10px 12px; border-radius: 8px; text-decoration: none; color: #333; display: flex; align-items: center; gap: 8px; }
+.menu-item.active { background: #6d28d9; color: white; }
+.menu-item:hover:not(.active) { background: #eef2ff; color: #4f46e5; }
+.content { flex: 1; padding: 24px; }
+.topbar h1 { margin: 0 0 16px; font-size: 22px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.card { background: #fff; padding: 16px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+.card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.card-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; color: #fff; }
+.card-icon.purple { background: #6d28d9; }
+.card-icon.orange { background: #f97316; }
+.card-icon.red { background: #ef4444; }
+.card-title { color: #666; font-size: 14px; }
+.card-value { font-size: 22px; font-weight: 700; margin-top: 6px; }
+.panels { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
+.panel { background: #fff; padding: 16px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); min-height: 300px; }
+.panel-title { font-weight: 700; margin-bottom: 12px; }
+.transactions { display: grid; gap: 10px; }
+.transaction { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #fafafa; border-radius: 8px; }
+.chart { height: 260px; display: grid; place-items: center; color: #888; border: 2px dashed #eee; border-radius: 12px; }
+.donut-chart { position: relative; height: 260px; display: grid; place-items: center; }
+.donut-svg { width: 100%; height: 100%; }
+.donut-center { position: absolute; text-align: center; }
+.donut-label { color: #666; font-size: 12px; }
+.donut-total { font-size: 22px; font-weight: 700; }
+.donut-legend { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; padding-top: 10px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #555; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.expenses-section { margin-top: 24px; }
+.income-section { margin-top: 24px; }
+.expenses-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; color: #666; }
+.see-all { background: #f3f4f6; border: none; padding: 6px 10px; border-radius: 8px; cursor: pointer; text-decoration: none; color: inherit; display: inline-block; }
+.expenses-list { display: grid; gap: 12px; }
+.expense-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #fafafa; border-radius: 10px; }
+.expense-left { display: flex; align-items: center; gap: 10px; }
+.expense-icon { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 18px; }
+.expense-icon.pink { background: #fce7f3; color: #db2777; }
+.expense-icon.blue { background: #dbeafe; color: #2563eb; }
+.expense-icon.yellow { background: #fef3c7; color: #d97706; }
+.expense-icon.gray { background: #e5e7eb; color: #374151; }
+.expense-meta { color: #888; font-size: 12px; }
+.expense-amount { color: #ef4444; font-weight: 600; }
+.income-amount { color: #16a34a; font-weight: 600; }
+.donut-chart { position: relative; height: 260px; display: grid; place-items: center; }
+.donut-svg { width: 100%; height: 100%; }
+.donut-svg circle { transition: transform 0.2s ease, filter 0.2s ease; }
+.donut-center { position: absolute; text-align: center; }
+.donut-label { color: #666; font-size: 12px; }
+.donut-total { font-size: 22px; font-weight: 700; }
+.donut-legend { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; padding-top: 10px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #555; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.bar-chart { height: 260px; display: flex; align-items: end; gap: 18px; padding: 8px; overflow: hidden; justify-content: center; }
+.bar { width: 60px; max-height: 240px; border-radius: 8px 8px 0 0; background: linear-gradient(180deg, #7c3aed, #a78bfa); transition: transform 0.2s ease, filter 0.2s ease; }
+.bar.light { background: linear-gradient(180deg, #c4b5fd, #ddd6fe); }
+.bar:hover { transform: translateY(-6px); filter: brightness(1.1); }
+.chart-labels { display: flex; gap: 18px; padding: 8px; justify-content: center; margin-top: 8px; }
+.chart-label { width: 60px; text-align: center; font-size: 11px; color: #666; font-weight: 500; }
+/* Tooltip for charts */
+.chart-tooltip { position: fixed; z-index: 2000; background: #111827; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 12px; pointer-events: none; opacity: 0; transform: translate(-50%, -120%); transition: opacity 0.1s ease; white-space: nowrap; box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+@media (max-width: 900px) { .app { flex-direction: column; } .sidebar { width: 100%; display: flex; gap: 16px; align-items: center; } .content { padding: 16px; } .stats { grid-template-columns: 1fr; } .panels { grid-template-columns: 1fr; } }
+
+/* Simple modal (reuses existing visual language) */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: grid; place-items: center; z-index: 3000; }
+.modal-content { background: #fff; border-radius: 12px; width: 520px; max-width: calc(100% - 32px); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+.modal-content.small { width: 420px; }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #eee; }
+.modal-title { font-weight: 700; }
+.modal-body { padding: 16px; display: grid; gap: 12px; }
+.modal-footer { padding: 12px 16px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; }
+.modal .close { background: transparent; border: none; font-size: 20px; cursor: pointer; color: #666; }
+.form-row { display: grid; gap: 6px; }
+.form-row label { font-size: 12px; color: #666; }
+.see-all.primary { background: #6d28d9; color: #fff; }

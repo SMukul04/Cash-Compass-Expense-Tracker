@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Compass | Dashboard</title>
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar">👤</div>
+                <div class="user-name" id="sidebarUserName">User</div>
+            </div>
+            <nav class="menu">
+                <a class="menu-item active" href="#">Dashboard</a>
+                <a class="menu-item" href="income.html">Income</a>
+                <a class="menu-item" href="expense.html">Expense</a>
+                <a class="menu-item" id="logoutBtn" href="#">Logout</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="topbar">
+                <h1>Welcome, <span id="greetingUserName">User</span></h1>
+            </header>
+            <section class="stats">
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-icon purple">💳</div>
+                        <div class="card-title">Total Balance</div>
+                    </div>
+                    <div class="card-value" id="totalBalance">₹0</div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-icon orange">📥</div>
+                        <div class="card-title">Total Income</div>
+                    </div>
+                    <div class="card-value" id="totalIncome">₹0</div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-icon red">🏷️</div>
+                        <div class="card-title">Total Expenses</div>
+                    </div>
+                    <div class="card-value" id="totalExpense">₹0</div>
+                </div>
+            </section>
+            <section class="panels">
+                <div class="panel">
+                    <div class="panel-title">Recent Transactions</div>
+                    <div class="expenses-header" style="margin-bottom: 12px;">
+                        <div id="txSelectedRange" style="color:#666;font-size:12px;">Showing: Latest</div>
+                        <button class="see-all" type="button" id="openTxFilterBtn">Select Period</button>
+                    </div>
+                    <div id="recentTransactions" class="transactions"></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">Financial Overview</div>
+                    <div id="chart" class="donut-chart">
+                        <div class="donut-center">
+                            <div class="donut-label">Total</div>
+                            <div class="donut-total" id="overviewTotal">₹0</div>
+                        </div>
+                        <svg id="overviewDonut" viewBox="0 0 200 200" class="donut-svg"></svg>
+                    </div>
+                    <div class="donut-legend" id="overviewLegend"></div>
+                </div>
+            </section>
+
+            <section class="panels expenses-section">
+                <div class="panel">
+                    <div class="panel-title">Expenses</div>
+                    <div class="expenses-header">
+                        <div>Category</div>
+                        <a class="see-all" href="expense.html">See All →</a>
+                    </div>
+                    <div id="expensesList" class="expenses-list"></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">Last 30 Days Expenses</div>
+                    <div id="expensesChart" class="bar-chart"></div>
+                    <div id="expensesLabels" class="chart-labels"></div>
+                </div>
+            </section>
+
+            <section class="panels income-section">
+                <div class="panel">
+                    <div class="panel-title">Income</div>
+                    <div class="expenses-header">
+                        <div>Category</div>
+                        <a class="see-all" href="income.html">See All →</a>
+                    </div>
+                    <div id="incomeList" class="expenses-list"></div>
+                </div>
+                <div class="panel">
+                    <div class="panel-title">Last 30 Days Income</div>
+                    <div id="incomeDonut" class="donut-chart">
+                        <div class="donut-center">
+                            <div class="donut-label">Total Income</div>
+                            <div class="donut-total" id="incomeTotal">₹0</div>
+                        </div>
+                        <svg viewBox="0 0 200 200" class="donut-svg" id="incomeDonutSvg"></svg>
+                    </div>
+                    <div class="donut-legend" id="incomeLegend"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Transactions period filter modal -->
+    <div id="txFilterModal" class="modal" style="display:none;">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <div class="modal-title">Select Transactions Period</div>
+                <button class="close" id="txCloseBtn" type="button">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <label for="txStartDate">Start date</label>
+                    <input type="date" id="txStartDate" />
+                </div>
+                <div class="form-row">
+                    <label for="txEndDate">End date</label>
+                    <input type="date" id="txEndDate" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="see-all" id="txClearBtn" type="button">Clear</button>
+                <button class="see-all primary" id="txApplyBtn" type="button">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JavaScript/dashboard.js"></script>
+</body>
+</html>

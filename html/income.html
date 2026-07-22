@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Compass | Income</title>
+    <link rel="stylesheet" href="../CSS/income.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar">👤</div>
+                <div class="user-name" id="sidebarUserName">User</div>
+            </div>
+            <nav class="menu">
+                <a class="menu-item" href="dashboard.html">Dashboard</a>
+                <a class="menu-item active" href="#">Income</a>
+                <a class="menu-item" href="expense.html">Expense</a>
+                <a class="menu-item" id="logoutBtn" href="#">Logout</a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="topbar">
+                <h1>Income Overview</h1>
+                <p class="subtitle">Track your earnings over time and analyze your income trends.</p>
+                <button class="add-income-btn">+ Add Income</button>
+            </header>
+            
+            <section class="income-chart-section">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <div class="chart-title">Income Trends</div>
+                        <div class="chart-actions">
+                            <div class="date-selector">
+                                <label for="dateFilter">Select Date:</label>
+                                <input type="date" id="dateFilter" class="date-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="incomeChart" class="income-chart"></div>
+                    <div id="incomeChartLabels" class="chart-labels"></div>
+                </div>
+            </section>
+
+            <section class="income-sources-section">
+                <div class="sources-header">
+                    <h2>Income Sources</h2>
+                    <div class="filters">
+                        <select id="incomeCategoryFilter">
+                            <option value="All">All Categories</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Interest from Savings">Interest from Savings</option>
+                            <option value="E-commerce Sales">E-commerce Sales</option>
+                            <option value="Graphic Design">Graphic Design</option>
+                            <option value="Affiliate Marketing">Affiliate Marketing</option>
+                        </select>
+                        <button class="download-btn">📥 Download</button>
+                    </div>
+                </div>
+                <div id="incomeSourcesList" class="sources-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Income Modal -->
+    <div id="addIncomeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Income</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="addIncomeForm">
+                <div class="form-group">
+                    <label for="incomeSource">Income Source:</label>
+                    <select id="incomeSource" name="source" required>
+                        <option value="">Select income source...</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Interest from Savings">Interest from Savings</option>
+                        <option value="E-commerce Sales">E-commerce Sales</option>
+                        <option value="Graphic Design">Graphic Design</option>
+                        <option value="Affiliate Marketing">Affiliate Marketing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="incomeAmount">Amount (₹):</label>
+                    <input type="number" id="incomeAmount" name="amount" placeholder="Enter amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="incomeDate">Date:</label>
+                    <input type="date" id="incomeDate" name="date" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-add">Add Income</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Income Modal -->
+    <div id="editIncomeModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Income</h2>
+                <span class="close" id="editIncomeClose">&times;</span>
+            </div>
+            <form id="editIncomeForm">
+                <div class="form-group">
+                    <label for="editIncomeSource">Income Source:</label>
+                    <select id="editIncomeSource" name="source" required>
+                        <option value="">Select income source...</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Interest from Savings">Interest from Savings</option>
+                        <option value="E-commerce Sales">E-commerce Sales</option>
+                        <option value="Graphic Design">Graphic Design</option>
+                        <option value="Affiliate Marketing">Affiliate Marketing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editIncomeAmount">Amount (₹):</label>
+                    <input type="number" id="editIncomeAmount" name="amount" placeholder="Enter amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="editIncomeDate">Date:</label>
+                    <input type="date" id="editIncomeDate" name="date" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="editIncomeCancel">Cancel</button>
+                    <button type="submit" class="btn-add">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content delete-confirm-modal">
+            <div class="modal-header">
+                <h2>🗑️ Confirm Deletion</h2>
+                <span class="close-button" onclick="closeDeleteConfirmModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="confirm-message">Are you sure you want to delete this income entry?</p>
+                <div class="delete-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📊</span>
+                        <span class="detail-label">Source:</span>
+                        <span class="detail-value" id="deleteSource"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💰</span>
+                        <span class="detail-label">Amount:</span>
+                        <span class="detail-value" id="deleteAmount"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span class="detail-label">Date:</span>
+                        <span class="detail-value" id="deleteDate"></span>
+                    </div>
+                </div>
+                <div class="warning-box">
+                    <span class="warning-icon">⚠️</span>
+                    <span class="warning-text">This action cannot be undone.</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-cancel" onclick="closeDeleteConfirmModal()">Cancel</button>
+                <button class="btn btn-delete" id="confirmDeleteButton">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JavaScript/income.js"></script>
+</body>
+</html>
